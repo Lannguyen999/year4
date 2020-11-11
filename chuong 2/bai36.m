@@ -1,14 +1,23 @@
 clear all;
 close all;
-Tp = input('Nhap chu ki xung = ');
-Tw = Tp/2;
-t = (-2*Tp:0.01:2*Tp);
-p = zeros(size(t));
-for i=1:length(t)
-    if t(i) >= 0 & t(i) <= Tp
-        p(i) = 1 - abs(t(i) - Tw)/Tw;
+clc;
+Tw = 2;     %do rong xung
+Tp = Tw*2;
+Np = 4;     %so luong xung muon xem
+Ns = 1e6;
+Timewindow = Np*Tp;
+ts = Timewindow/(Ns - 1);
+t = 0:ts:Timewindow;
+Nsp = round(Tp/ts);
+
+y = zeros(size(t));
+for i=1:Ns
+    x(i) = mod(t(i),Nsp*ts);
+    if x(i) >=0 & x(i) <=Tp
+        y(i) = 1 - abs((x(i) - Tw)/Tw);
+    else
+        y(i) = 0;
     end
 end
-
-plot(t,p,'red');
+plot(t,y);
 grid on;

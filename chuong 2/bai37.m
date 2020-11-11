@@ -1,3 +1,6 @@
+clear all;
+close all;
+clc;
 %tham so co ban
 fc = 300;    %tan so song mang [Hz]
 phi_c = 0;   %pha cua song mang[rad]
